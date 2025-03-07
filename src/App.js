@@ -1,25 +1,29 @@
-// import logo from './logo.svg';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import About from './Container/About';
 import Profile from './Container/Profile';
-import { useState } from 'react';
 
 function App() {
-  const [state,setState] = useState('');
-  let component
-  if(state === 'profile'){
-    component = <Profile></Profile>
-  }
-  if(state === 'about'){
-    component = <About></About>
-  }
+  const navigate = useNavigate(); // Correct navigation in v6
+
   return (
     <div>
-      <button onClick={()=>setState('profile')}>Profile</button>
-      <button onClick={()=>setState('about')}>About</button>
-      {component}
+      <button onClick={() => navigate('/profile')}>Profile</button>
+      <button onClick={() => navigate('/about')}>About</button>
+
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
     </div>
   );
 }
 
-export default App;
+// Wrap the app inside BrowserRouter in index.js or here
+export default function Root() {
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+}
