@@ -4,7 +4,7 @@ import About from './Container/About';
 import Profile from './Container/Profile';
 
 function App() {
-  const navigate = useNavigate(); // Correct navigation in v6
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -19,7 +19,6 @@ function App() {
   );
 }
 
-// Wrap the app inside BrowserRouter in index.js or here
 export default function Root() {
   return (
     <BrowserRouter>
